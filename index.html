@@ -281,10 +281,12 @@ a:focus-visible{outline:2px solid var(--heading);outline-offset:3px}
       <div class="date-big">31 октября</div>
       <div class="date-year">2026</div>
       <div class="date-rule"></div>
+      <span class="eyebrow">Осталось</span>
       <div class="countdown">
         <div class="cd-cell"><div class="cd-num" id="cdD">—</div><div class="cd-label">дней</div></div>
         <div class="cd-cell"><div class="cd-num" id="cdH">—</div><div class="cd-label">часов</div></div>
         <div class="cd-cell"><div class="cd-num" id="cdM">—</div><div class="cd-label">минут</div></div>
+        <div class="cd-cell"><div class="cd-num" id="cdS">—</div><div class="cd-label">секунд</div></div> 
       </div>
     </section>
 
@@ -340,7 +342,7 @@ a:focus-visible{outline:2px solid var(--heading);outline-offset:3px}
 <script>
 (function(){
   // Дата и время свадьбы: год, месяц-1, день, час, минута
-  var target = new Date(2026, 9, 31, 17, 0, 0);
+  var target = new Date("2026-10-31T17:00:00+06:00");
   function pad(n){ return n < 10 ? "0" + n : "" + n; }
   function tick(){
     var diff = target - new Date();
@@ -348,8 +350,9 @@ a:focus-visible{outline:2px solid var(--heading);outline-offset:3px}
     document.getElementById("cdD").textContent = Math.floor(diff/86400000);
     document.getElementById("cdH").textContent = pad(Math.floor(diff%86400000/3600000));
     document.getElementById("cdM").textContent = pad(Math.floor(diff%3600000/60000));
+    document.getElementById("cdS").textContent = pad(Math.floor(diff%60000/1000));
   }
-  tick(); setInterval(tick, 30000);
+  tick(); setInterval(tick, 1000);
 })();
 </script>
 
